@@ -1,0 +1,41 @@
+<div style="border: 1px solid black;padding:10px">
+  <h2>Add Team</h2>
+  <input type="text" placeholder="Enter Team Name" [(ngModel)]="name" /><br />
+  <input type="text" placeholder="Enter City" [(ngModel)]="city" /><br />
+  <input type="text" placeholder="Enter Country" [(ngModel)]="country" /><br />
+  <input type="text" placeholder="Enter Funds" [(ngModel)]="funds" /><br />
+  <button (click)="addTeam()">Add Team</button>
+</div>
+<div style="border: 1px solid black;padding:10px;margin-top:10px">
+  <h2>Teams:</h2>
+  <ul>
+    <li *ngFor="let team of teams" style="margin-bottom:10px;padding-bottom:10px;border-bottom: solid 1px black;">
+      <div *ngIf="team">
+        <form (ngSubmit)="updateTeam(team)">
+          <div class="form-group">
+            <b>Team Name:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="team.name" name="name" /><br />
+            <b>Team City:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="team.city" name="city" /><br />
+            <b>Team Country:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="team.country" name="country" /><br />
+            <b>Team Funds:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="team.funds" name="funds" />&nbsp;&nbsp;USD<br />
+            <div><b>Team Players:</b></div>
+            <button type="submit" (click)="getPlayers(team)">Show all players</button>
+            <ul>
+              <li *ngFor="let player of team.players" style="margin-bottom:10px;padding-bottom:10px;border-bottom: solid 1px black;">
+                <div *ngIf="player">
+                  <div><b>Player Name:</b> {{player.name}}</div>
+                  <div><b>Player Surname:</b> {{player.surname}}</div>
+                  <div><b>Player Age:</b> {{player.age}}</div>
+                  <div><b>Player Career Start:</b> {{player.careerStart}}</div>
+                  <div><b>Player Price:</b> {{player.price}} USD</div>
+                </div>
+              </li>
+            </ul>
+            <input type="hidden" [(ngModel)]="team.id" name="id" /><br />
+            <button type="submit">Update Team</button><br /><br />
+            <button (click)="deleteTeam(team)">Delete Team</button>
+          </div>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>

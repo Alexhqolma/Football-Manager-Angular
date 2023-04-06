@@ -1,0 +1,38 @@
+<div style="border: 1px solid black;padding:10px">
+  <h2>Add Player</h2>
+  <input type="text" placeholder="Enter Team Name" [(ngModel)]="name" /><br />
+  <input type="text" placeholder="Enter Team Surname" [(ngModel)]="surname" /><br />
+  <input type="text" placeholder="Enter Age" [(ngModel)]="age" /><br />
+  <input type="text" placeholder="Enter Career Start" [(ngModel)]="careerStart" /><br />
+  <select [(ngModel)]="teamId" name="team">
+    <option [ngValue]="null" disabled selected = selected>Select Team</option>
+    <option *ngFor="let team of teams" [ngValue]="team.id">{{team.name}}</option>
+  </select><br />
+  <button (click)="addPlayer()">Add Player</button>
+</div>
+<div style="border: 1px solid black;padding:10px;margin-top:10px">
+  <h2>Players:</h2>
+  <ul>
+    <li *ngFor="let player of players" style="margin-bottom:10px;padding-bottom:10px;border-bottom: solid 1px black;">
+      <div *ngIf="player">
+        <form (ngSubmit)="updatePlayer(player)">
+          <div class="form-group">
+            <b>Player Name:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="player.name" name="name" /><br />
+            <b>Player Surname:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="player.surname" name="surname" /><br />
+            <b>Player Age:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="player.age" name="age" /><br />
+            <b>Player Career Start:&nbsp;&nbsp;</b><input type="text" [(ngModel)]="player.careerStart" name="careerStart" /><br />
+            <b>Player Price:&nbsp;&nbsp;</b>{{player.price}}<br />
+            <b>Player Team:&nbsp;&nbsp;</b>{{getTeam(player.teamId).name}}<br />
+            <b>Transfer Player To Team:&nbsp;&nbsp;</b><select [(ngModel)]="teamId" name="team">
+              <option [ngValue]="null" disabled selected = selected>Select Team</option>
+              <option *ngFor="let team of teams" [ngValue]="team.id">{{team.name}}</option>
+            </select>&nbsp;&nbsp;<button (click)="transferPlayer(player, teamId)">Transfer Player</button><br />
+            <input type="hidden" [(ngModel)]="player.id" name="id" /><br />
+            <button type="submit">Update Player</button><br /><br />
+            <button (click)="deletePlayer(player)">Delete Player</button>
+          </div>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
