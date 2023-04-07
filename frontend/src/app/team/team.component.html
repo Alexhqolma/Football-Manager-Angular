@@ -1,10 +1,12 @@
 <div style="border: 1px solid black;padding:10px">
   <h2>Add Team</h2>
-  <input type="text" placeholder="Enter Team Name" [(ngModel)]="name" /><br />
-  <input type="text" placeholder="Enter City" [(ngModel)]="city" /><br />
-  <input type="text" placeholder="Enter Country" [(ngModel)]="country" /><br />
-  <input type="text" placeholder="Enter Funds" [(ngModel)]="funds" /><br />
-  <button (click)="addTeam()">Add Team</button>
+  <form (ngSubmit)="addTeam()">
+    <input type="text" placeholder="Enter Team Name" [(ngModel)]="name" name="name" /><br />
+    <input type="text" placeholder="Enter City" [(ngModel)]="city" name="city" /><br />
+    <input type="text" placeholder="Enter Country" [(ngModel)]="country" name="country" /><br />
+    <input type="text" placeholder="Enter Funds" [(ngModel)]="funds" name="funds" /><br />
+    <button type="submit">Add Team</button>
+  </form>
 </div>
 <div style="border: 1px solid black;padding:10px;margin-top:10px">
   <h2>Teams:</h2>

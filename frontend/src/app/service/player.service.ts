@@ -8,7 +8,8 @@ import {Team} from "../model/team";
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
   private playerUrl = 'players';
-  private transferUrl = 'players/transfer';
+  private transferUrl = 'players/transfer?playerId=';
+  private transferPlayerUrl = '&teamId=';
 
   constructor(private http: HttpClient) { }
 
@@ -43,9 +44,9 @@ export class PlayerService {
     );
   }
 
-  transferPlayer(player: Player, teamToId: number): Observable<any> {
-    const url = `${environment.apiUrl}${this.transferUrl}/${teamToId}`
-    return this.http.put(url, player, this.httpOptions).pipe(
+  transferPlayer(playerId: number, teamToId: number): Observable<any> {
+    const url = `${environment.apiUrl}${this.transferUrl}${playerId}${this.transferPlayerUrl}${teamToId}`
+    return this.http.put(url, playerId, this.httpOptions).pipe(
       catchError(this.handleError<any>('transferPlayer'))
     );
   }

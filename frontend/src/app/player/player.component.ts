@@ -74,7 +74,7 @@ export class PlayerComponent implements OnInit {
     this.playerService.deletePlayer(player).subscribe();
   }
 
-  transferPlayer(player: Player, id: number): void {
-    this.playerService.transferPlayer(player, id).subscribe();
+  transferPlayer(playerId: number, teamId: number): void {
+    this.playerService.transferPlayer(playerId, teamId).subscribe();
   }
 }

@@ -26,9 +26,9 @@ public class InjectController {
     @GetMapping("/inject")
     public String inject() {
         /** Add teams*/
-        Team team = new Team();
-        team.setName("Free players");
-        team.setFunds(BigDecimal.valueOf(1000000));
+        Team teamFreePlayers = new Team();
+        teamFreePlayers.setName("Free players");
+        teamFreePlayers.setFunds(BigDecimal.valueOf(1000000));
         Team teamManchester = new Team();
         teamManchester.setName("Manchester United");
         teamManchester.setFunds(BigDecimal.valueOf(10000000));
@@ -39,53 +39,53 @@ public class InjectController {
         teamChelsea.setCity("London");
         teamChelsea.setCountry("England");
         teamChelsea.setFunds(BigDecimal.valueOf(20000000));
-        teamService.save(team);
+        teamService.save(teamFreePlayers);
         teamService.save(teamManchester);
         teamService.save(teamChelsea);
 
         /** Add players */
-        Player player1 = new Player();
-        player1.setName("Cristiano");
-        player1.setSurname("Ronaldo");
-        player1.setCareerStart(LocalDate.of(2000,1,21));
-        player1.setAge(38);
-        player1.setTeam(teamManchester);
-        playerService.save(player1);
-        Player player2 = new Player();
-        player2.setName("Roberto");
-        player2.setSurname("Carlos");
-        player2.setCareerStart(LocalDate.of(1995,1,21));
-        player2.setAge(43);
-        player2.setTeam(teamManchester);
-        playerService.save(player2);
-        Player player3 = new Player();
-        player3.setName("Gabriel");
-        player3.setSurname("Batistuta");
-        player3.setCareerStart(LocalDate.of(1990,1,21));
-        player3.setAge(45);
-        player3.setTeam(teamChelsea);
-        playerService.save(player3);
-        Player player4 = new Player();
-        player4.setName("Lionel");
-        player4.setSurname("Messi");
-        player4.setCareerStart(LocalDate.of(2005,1,21));
-        player4.setAge(28);
-        player4.setTeam(teamChelsea);
-        playerService.save(player4);
+        Player cristianoRonaldo = new Player();
+        cristianoRonaldo.setName("Cristiano");
+        cristianoRonaldo.setSurname("Ronaldo");
+        cristianoRonaldo.setCareerStart(LocalDate.of(2000,1,21));
+        cristianoRonaldo.setAge(38);
+        cristianoRonaldo.setTeam(teamManchester);
+        playerService.save(cristianoRonaldo);
+        Player robertoCarlos = new Player();
+        robertoCarlos.setName("Roberto");
+        robertoCarlos.setSurname("Carlos");
+        robertoCarlos.setCareerStart(LocalDate.of(1995,1,21));
+        robertoCarlos.setAge(43);
+        robertoCarlos.setTeam(teamManchester);
+        playerService.save(robertoCarlos);
+        Player gabrielBatistuta = new Player();
+        gabrielBatistuta.setName("Gabriel");
+        gabrielBatistuta.setSurname("Batistuta");
+        gabrielBatistuta.setCareerStart(LocalDate.of(1990,1,21));
+        gabrielBatistuta.setAge(45);
+        gabrielBatistuta.setTeam(teamChelsea);
+        playerService.save(gabrielBatistuta);
+        Player lionelMessi = new Player();
+        lionelMessi.setName("Lionel");
+        lionelMessi.setSurname("Messi");
+        lionelMessi.setCareerStart(LocalDate.of(2005,1,21));
+        lionelMessi.setAge(28);
+        lionelMessi.setTeam(teamChelsea);
+        playerService.save(lionelMessi);
 
         /** Team set players */
-        List<Player> players1 = new ArrayList<>();
-        players1.add(player1);
-        players1.add(player2);
-        List<Player> players2 = new ArrayList<>();
-        players2.add(player3);
-        players2.add(player4);
-        teamManchester.setPlayers(players1);
-        teamChelsea.setPlayers(players2);
+        List<Player> firstTeamplayers = new ArrayList<>();
+        firstTeamplayers.add(cristianoRonaldo);
+        firstTeamplayers.add(robertoCarlos);
+        List<Player> secondTeamplayers = new ArrayList<>();
+        secondTeamplayers.add(gabrielBatistuta);
+        secondTeamplayers.add(lionelMessi);
+        teamManchester.setPlayers(firstTeamplayers);
+        teamChelsea.setPlayers(secondTeamplayers);
         teamService.update(teamManchester);
         teamService.update(teamChelsea);
         /** Transfer */
-        //playerService.transferPlayer(teamChelsea.getId(), player1);
+        playerService.transferPlayer(teamChelsea.getId(), cristianoRonaldo);
 
         return "Done!";
     }

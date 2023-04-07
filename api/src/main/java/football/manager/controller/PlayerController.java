@@ -56,11 +56,11 @@ public class PlayerController {
         playerService.delete(id);
     }
 
-    @PutMapping("/transfer/{teamToId}")
-    public PlayerResponseDto transferPlayer(@PathVariable Long teamToId,
-                                          @RequestBody PlayerRequestDto playerRequestDto) {
-        Player player = playerMapper.toModel(playerRequestDto);
-        playerService.transferPlayer(teamToId, player);
+    @PutMapping("/transfer")
+    public PlayerResponseDto transferPlayer(@RequestParam("playerId") Long playerId,
+                                            @RequestParam("teamId") Long teamId) {
+        Player player = playerService.findById(playerId);
+        playerService.transferPlayer(teamId, player);
         return playerMapper.toDto(player);
     }
 }
