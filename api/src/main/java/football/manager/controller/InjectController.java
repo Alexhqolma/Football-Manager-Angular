@@ -86,6 +86,7 @@ public class InjectController {
         teamService.update(teamChelsea);
         /** Transfer */
         playerService.transferPlayer(teamChelsea.getId(), cristianoRonaldo);
+        playerService.transferPlayer(teamManchester.getId(), cristianoRonaldo);
 
         return "Done!";
     }

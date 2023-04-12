@@ -1,11 +1,6 @@
 package football.manager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +16,10 @@ import java.time.LocalDate;
 @Table(name = "players")
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "players_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "players_id_seq",
+    sequenceName = "players_id_seq",
+    allocationSize = 1)
     private Long id;
     private String name;
     private String surname;

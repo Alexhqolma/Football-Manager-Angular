@@ -96,6 +96,9 @@ public class PlayerServiceImpl implements PlayerService {
                 .orElseThrow(() -> new RuntimeException("Can't find team by id " + teamToId));
         movePlayer(teamFrom, teamTo, player);
         moveMoney(teamFrom, teamTo, player);
+        System.out.println(teamFrom.getId());
+        System.out.println(teamTo.getId());
+        System.out.println(player.getId());
         teamRepository.save(teamFrom);
         teamRepository.save(teamTo);
         playerRepository.save(player);
