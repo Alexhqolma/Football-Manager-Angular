@@ -24,6 +24,7 @@ public class Player {
     private String name;
     private String surname;
     private int age;
+    @Column(name = "careerstart")
     private LocalDate careerStart;
     @ManyToOne
     private Team team;
