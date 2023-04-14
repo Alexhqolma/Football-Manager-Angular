@@ -27,6 +27,7 @@ public class Player {
     @Column(name = "careerstart")
     private LocalDate careerStart;
     @ManyToOne
+    @JoinColumn(name = "team_id")
     private Team team;
     private BigDecimal price;
 

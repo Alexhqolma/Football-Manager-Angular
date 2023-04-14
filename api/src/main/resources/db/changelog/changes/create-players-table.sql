@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS public.players
     surname character varying(256) NOT NULL,
     age int NOT NULL,
     careerstart date NOT NULL,
-    price bigint NOT NULL,
+    price numeric NOT NULL,
+    team_id INT NOT NULL,
     CONSTRAINT players_pk PRIMARY KEY (id)
 );
 
