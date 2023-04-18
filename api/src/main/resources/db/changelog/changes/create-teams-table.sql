@@ -4,11 +4,11 @@
 CREATE TABLE IF NOT EXISTS public.teams
 (
     id bigint NOT NULL,
-    name character varying(256) NOT NULL,
-    surname character varying(256) NOT NULL,
-    funds numeric NOT NULL,
-    city character varying(256) NOT NULL,
-    country character varying(256) NOT NULL,
+    name character varying(256),
+    surname character varying(256),
+    funds numeric,
+    city character varying(256),
+    country character varying(256),
     CONSTRAINT teams_pk PRIMARY KEY (id)
 );
 

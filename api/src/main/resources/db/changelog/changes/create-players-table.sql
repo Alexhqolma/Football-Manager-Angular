@@ -4,12 +4,12 @@
 CREATE TABLE IF NOT EXISTS public.players
 (
     id bigint NOT NULL,
-    name character varying(256) NOT NULL,
-    surname character varying(256) NOT NULL,
-    age int NOT NULL,
-    careerstart date NOT NULL,
-    price numeric NOT NULL,
-    team_id INT NOT NULL,
+    name character varying(256),
+    surname character varying(256),
+    age int,
+    careerstart date,
+    price numeric,
+    team_id INT,
     CONSTRAINT players_pk PRIMARY KEY (id)
 );
 

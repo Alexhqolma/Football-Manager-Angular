@@ -3,8 +3,9 @@
 
 CREATE TABLE IF NOT EXISTS public.teams_players
 (
-    id bigint NOT NULL,
-    CONSTRAINT teams_players_pk PRIMARY KEY (id)
+    id bigint,
+    team_id bigint NOT NULL,
+    players_id bigint NOT NULL
 );
 
 --rollback DROP TABLE teams_players;
