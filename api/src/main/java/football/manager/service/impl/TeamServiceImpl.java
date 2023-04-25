@@ -6,22 +6,21 @@ import football.manager.repository.PlayerRepository;
 import football.manager.repository.TeamRepository;
 import football.manager.service.TeamService;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TeamServiceImpl implements TeamService {
+    private static final Long FREE_PLAYER = 1L;
     private final TeamRepository teamRepository;
     private final PlayerRepository playerRepository;
-    private static final Long FREE_PLAYER = 1L;
 
     public TeamServiceImpl(TeamRepository teamRepository,
                            PlayerRepository playerRepository) {
         this.teamRepository = teamRepository;
         this.playerRepository = playerRepository;
     }
-
 
     @Override
     public Team save(Team team) {

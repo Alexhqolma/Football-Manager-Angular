@@ -5,8 +5,8 @@ import football.manager.dto.response.TeamResponseDto;
 import football.manager.model.Player;
 import football.manager.model.Team;
 import football.manager.service.PlayerService;
-import org.springframework.stereotype.Component;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 public class TeamMapper {

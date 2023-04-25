@@ -6,17 +6,17 @@ import football.manager.repository.PlayerRepository;
 import football.manager.repository.TeamRepository;
 import football.manager.service.PlayerService;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
+    private static final int PLAYER_STATIC_PRICE = 100000;
     private final PlayerRepository playerRepository;
     private final TeamRepository teamRepository;
-    private static final int PLAYER_STATIC_PRICE = 100000;
 
     public PlayerServiceImpl(PlayerRepository playerRepository,
                              TeamRepository teamRepository) {
@@ -26,9 +26,6 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player save(Player player) {
-        if (player.getPrice() == null) {
-            player.setPrice(BigDecimal.valueOf(0));
-        }
         return playerRepository.save(player);
     }
 
@@ -41,8 +38,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> findAll() {
         List<Player> players = playerRepository.findAll();
-        for(Player player : players) {
-            player.setPrice(getPlayerPrice(player.getId()));
+        for (Player player : players) {
+            player.setPrice(getPlayerPrice(player));
         }
         return players;
     }
@@ -50,8 +47,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> findAllPlayersByTeamId(Long id) {
         List<Player> players = playerRepository.findAllPlayersByTeamId(id);
-        for(Player player : players) {
-            player.setPrice(getPlayerPrice(player.getId()));
+        for (Player player : players) {
+            player.setPrice(getPlayerPrice(player));
         }
         return players;
     }
@@ -68,9 +65,7 @@ public class PlayerServiceImpl implements PlayerService {
         playerRepository.deleteById(id);
     }
 
-    private BigDecimal getPlayerPrice(Long playerId) {
-        Player player = playerRepository.findById(playerId)
-                .orElseThrow(() -> new RuntimeException("Can't find player by id " + playerId));
+    private BigDecimal getPlayerPrice(Player player) {
         int monthExp = (LocalDate.now().getMonthValue()
                 - player.getCareerStart().getMonthValue()) * 100000;
         return BigDecimal.valueOf(monthExp)
@@ -81,7 +76,8 @@ public class PlayerServiceImpl implements PlayerService {
         Player player = playerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Can't find player by id " + id));
         Team team = teamRepository.findById(player.getTeam().getId())
-                .orElseThrow(() -> new RuntimeException("Can't find team by id " + player.getTeam().getId()));
+                .orElseThrow(() -> new RuntimeException("Can't find team by id "
+                        + player.getTeam().getId()));
         List<Player> players = team.getPlayers();
         players.remove(player);
         teamRepository.save(team);
@@ -91,7 +87,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Player transferPlayer(Long teamToId, Player player) {
         Team teamFrom = teamRepository.findById(player.getTeam().getId())
-                .orElseThrow(() -> new RuntimeException("Can't find team by id " + player.getTeam().getId()));
+                .orElseThrow(() -> new RuntimeException("Can't find team by id "
+                        + player.getTeam().getId()));
         Team teamTo = teamRepository.findById(teamToId)
                 .orElseThrow(() -> new RuntimeException("Can't find team by id " + teamToId));
         movePlayer(teamFrom, teamTo, player);
