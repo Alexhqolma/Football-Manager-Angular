@@ -48,6 +48,7 @@ public class InjectController {
         cristianoRonaldo.setSurname("Ronaldo");
         cristianoRonaldo.setCareerStart(LocalDate.of(2000,1,21));
         cristianoRonaldo.setAge(38);
+        cristianoRonaldo.setPrice(BigDecimal.ZERO);
         cristianoRonaldo.setTeam(teamManchester);
         playerService.save(cristianoRonaldo);
         Player robertoCarlos = new Player();
@@ -55,6 +56,7 @@ public class InjectController {
         robertoCarlos.setSurname("Carlos");
         robertoCarlos.setCareerStart(LocalDate.of(1995,1,21));
         robertoCarlos.setAge(43);
+        robertoCarlos.setPrice(BigDecimal.ZERO);
         robertoCarlos.setTeam(teamManchester);
         playerService.save(robertoCarlos);
         Player gabrielBatistuta = new Player();
@@ -62,6 +64,7 @@ public class InjectController {
         gabrielBatistuta.setSurname("Batistuta");
         gabrielBatistuta.setCareerStart(LocalDate.of(1990,1,21));
         gabrielBatistuta.setAge(45);
+        gabrielBatistuta.setPrice(BigDecimal.ZERO);
         gabrielBatistuta.setTeam(teamChelsea);
         playerService.save(gabrielBatistuta);
         Player lionelMessi = new Player();
@@ -69,6 +72,7 @@ public class InjectController {
         lionelMessi.setSurname("Messi");
         lionelMessi.setCareerStart(LocalDate.of(2005,1,21));
         lionelMessi.setAge(28);
+        lionelMessi.setPrice(BigDecimal.ZERO);
         lionelMessi.setTeam(teamChelsea);
         playerService.save(lionelMessi);
 
