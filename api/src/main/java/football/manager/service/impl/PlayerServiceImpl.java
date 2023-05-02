@@ -91,7 +91,7 @@ public class PlayerServiceImpl implements PlayerService {
                         + player.getTeam().getId()));
         Team teamTo = teamRepository.findById(teamToId)
                 .orElseThrow(() -> new RuntimeException("Can't find team by id " + teamToId));
-        movePlayer(teamFrom, teamTo, player);
+        movePlayer(teamTo, player);
         moveMoney(teamFrom, teamTo, player);
         System.out.println(teamFrom.getId());
         System.out.println(teamTo.getId());
@@ -102,13 +102,7 @@ public class PlayerServiceImpl implements PlayerService {
         return player;
     }
 
-    private void movePlayer(Team teamFrom, Team teamTo, Player player) {
-        List<Player> playersFrom = teamFrom.getPlayers();
-        List<Player> playersTo = teamTo.getPlayers();
-        playersFrom.remove(player);
-        playersTo.add(player);
-        teamFrom.setPlayers(playersFrom);
-        teamTo.setPlayers(playersTo);
+    private void movePlayer(Team teamTo, Player player) {
         player.setTeam(teamTo);
     }
 
