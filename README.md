@@ -23,7 +23,8 @@ This project is a simple simulator of player transfer from team to team.
 - Run Angular
 - Docker: run -> docker compose build
 - Docker: run -> docker compose up
-- Docker: api port: 6868, frontend port: 8081
+
+## Endpoints
 - Start from endpoint /inject - will add basic info to DB
 - /players - You will receive a list of all players where you can add new one, update, delete any player, also make a transfer
 - /teams - You will receive a list of all teams where you can add new one, update, delete any team
